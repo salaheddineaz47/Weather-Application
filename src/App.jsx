@@ -1,5 +1,5 @@
 import { Oval } from "react-loader-spinner";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFrown } from "@fortawesome/free-solid-svg-icons";
@@ -39,29 +39,6 @@ function App() {
       "Friday",
       "Saturday",
     ];
-    // const months = [
-    //   "Janvier",
-    //   "Février",
-    //   "Mars",
-    //   "Avril",
-    //   "Mai",
-    //   "Juin",
-    //   "Juillet",
-    //   "Août",
-    //   "Septembre",
-    //   "Octobre",
-    //   "Novembre",
-    //   "Décembre",
-    // ];
-    // const WeekDays = [
-    //   "Dimanche",
-    //   "Lundi",
-    //   "Mardi",
-    //   "Mercredi",
-    //   "Jeudi",
-    //   "Vendredi",
-    //   "Samedi",
-    // ];
     const currentDate = new Date();
     const date = `${WeekDays[currentDate.getDay()]} ${currentDate.getDate()} ${
       months[currentDate.getMonth()]
@@ -124,6 +101,10 @@ function App() {
       localStorage.setItem("favorites", JSON.stringify(newFavorites));
     }
   };
+
+  useEffect(function () {
+    fetchWeather("Marrakech");
+  }, []);
 
   return (
     <div className="App">
